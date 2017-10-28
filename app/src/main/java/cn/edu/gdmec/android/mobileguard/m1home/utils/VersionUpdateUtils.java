@@ -95,10 +95,10 @@ public class VersionUpdateUtils {
                 }
             } catch (IOException e) {
                 handler.sendEmptyMessage(MESSAGE_IO_ERROR);
-                e.printStackTrace();
+               // e.printStackTrace();
             } catch (JSONException e) {
                 handler.sendEmptyMessage(MESSAGE_JSON_ERROR);
-                e.printStackTrace();
+               // e.printStackTrace();
             }
         }
     }
