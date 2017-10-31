@@ -17,11 +17,9 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="MobileGuard"
-
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"/>
-
+        <activity android:name=".SplashActivity" />
         <activity android:name=".m1home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,10 +43,12 @@
         </receiver>
 
         <activity android:name=".m2theftguard.ContactSelectActivity" />
+
         <service
             android:name=".m2theftguard.service.GPSLocationService"
             android:enabled="true"
             android:exported="true" />
+
         <receiver
             android:name=".m2theftguard.receiver.SmsLostFindReceiver"
             android:enabled="true"
@@ -57,18 +57,24 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".m2theftguard.receiver.MyDeviceAdminReceiver"
-            android:permission="android.permission.BIND_DEVICE_ADMIN"
+        <receiver
+            android:name=".m2theftguard.receiver.MyDeviceAdminReceiver"
             android:enabled="true"
-            android:exported="true">
-            <meta-data android:name="android.app.device_admin"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
                 android:resource="@xml/device_admin_sample" />
+
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
-
         </receiver>
 
+        <activity android:name=".m3communicationguard.adapter.AddBlackNumberActivity" />
+        <activity android:name=".m3communicationguard.adapter.ddd" />
+        <activity android:name=".m3communicationguard.adapter.sssss" />
+        <activity android:name=".m3communicationguard.adapter.SecurityPhoneActivity"></activity>
     </application>
 
 </manifest>
