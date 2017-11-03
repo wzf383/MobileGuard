@@ -20,6 +20,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.receiver.MyDeviceAdminReceiver;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
+import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
@@ -55,7 +56,8 @@ public class HomeActivity extends AppCompatActivity {
                             showSetUpPswdDialog();
                         }
                         break;
-
+                    case 1:
+                        startActivity(SecurityPhoneActivity.class);
                 }
             }
         });
@@ -135,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
                             Toast.makeText(HomeActivity.this,"密码不能为空!", 0).show();
                         }else if(password.equals(MD5Utils.encode(mInPswdDialog.getPassword()))){
                             mInPswdDialog.dismiss();
-                            startActivity(LostFindActivity.class);
+                            startActivity(LostFindActivity.class);//11111111111111
                             Toast.makeText(HomeActivity.this, "可以进入手机防盗模块! ", Toast.LENGTH_LONG).show();
                         }else {
                             mInPswdDialog.dismiss();
