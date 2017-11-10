@@ -33,9 +33,10 @@
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:background="@color/black30"/>
     <LinearLayout
+        android:id="@+id/ll_option_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
