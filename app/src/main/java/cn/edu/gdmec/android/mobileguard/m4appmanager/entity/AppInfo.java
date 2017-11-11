@@ -7,15 +7,19 @@ import android.graphics.drawable.Drawable;
  */
 
 public class AppInfo {
-    //程序包名
+    //应用程序包名
     public String packageName;
     //应用程序图标
     public Drawable icon;
     public String appName;
     public String apkPath;
+    //应用程序大小
     public long appSize;
+    //是否是手机存储
     public boolean isInRoom;
+    //是否是用户应用
     public boolean isUserApp;
+    //是否选中，莫仍都为false
     public boolean isSelected=false;
     //拿到app位置字符串
     public String getAppLocation(boolean isInRoom){

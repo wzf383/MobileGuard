@@ -20,7 +20,7 @@ public class AppInfoParser {
     //获得手机所有应用程序
     //@param context 上下文
     public static List<AppInfo> getAppInfos(Context context){
-        //获包管理
+        //获取包管理器
         PackageManager pm=context.getPackageManager();
         List<PackageInfo> packInfos=pm.getInstalledPackages(0);
         List<AppInfo> appinfos=new ArrayList<AppInfo>();
