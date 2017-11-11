@@ -14,5 +14,5 @@
     <color name="black">#000000</color>
     <color name="graye5">#E5E5E5</color>
     <color name="bright_yellow">#FEC425</color>
-    <color name="transperent">#00000000</color>
+    <color name="transparent">#00000000</color>
 </resources>

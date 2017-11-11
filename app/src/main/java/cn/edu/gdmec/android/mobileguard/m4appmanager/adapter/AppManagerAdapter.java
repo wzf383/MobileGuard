@@ -87,7 +87,7 @@ public class AppManagerAdapter extends BaseAdapter {
         }else {
             viewHolder=new ViewHolder();
             view =View.inflate(context,R.layout.item_appmanager_list,null);
-            viewHolder.mAppIconImgv=(ImageView)view.findViewById(R.id.imagv_appicon);
+            viewHolder.mAppIconImgv=(ImageView)view.findViewById(R.id.imgv_appicon);
             viewHolder.mAppLocationTV=(TextView) view.findViewById(R.id.tv_appisroom);
             viewHolder.mAppSizeTV=(TextView)view.findViewById(R.id.tv_appsize);
             viewHolder.mAppNameTV=(TextView)view.findViewById(R.id.tv_appname);
@@ -109,7 +109,8 @@ public class AppManagerAdapter extends BaseAdapter {
                 viewHolder.mAppOptionLL.setVisibility(View.GONE);
             }
         }
-        MYClickListener listener=new MYClickListener(appInfo);
+       // MYClickListener listener=new MYClickListener(appInfo);
+        MyClickListener listener=new   MyClickListener(appInfo);
         viewHolder.mLuanchAppTV.setOnClickListener(listener);
         viewHolder.mSettingAppTV.setOnClickListener(listener);
         viewHolder.mShareAppTV.setOnClickListener(listener);
@@ -141,10 +142,10 @@ public class AppManagerAdapter extends BaseAdapter {
 
     }
 
-    class MYClickListener implements View.OnClickListener{
+    class   MyClickListener implements View.OnClickListener{////////////////
         private AppInfo appInfo;
 
-        public MYClickListener(AppInfo appInfo){
+        public   MyClickListener(AppInfo appInfo){
             super();
             this.appInfo=appInfo;
         }

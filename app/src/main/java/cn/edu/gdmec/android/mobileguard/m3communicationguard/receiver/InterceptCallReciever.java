@@ -35,14 +35,18 @@ public class InterceptCallReciever extends BroadcastReceiver {
         BlackNumberDao dao = new BlackNumberDao(context);
         if(!intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)){
             String mIncomingNumber = "";
+
             TelephonyManager tManager = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
             switch (tManager.getCallState()){
                 case TelephonyManager.CALL_STATE_RINGING:
                     mIncomingNumber = intent.getStringExtra("incoming_number");
+
                     if(mIncomingNumber == null){
                         return;
                     }
+
                     int blackContactMode = dao.getBlackContactMode(mIncomingNumber);
+
                     if(blackContactMode == 1 || blackContactMode == 3){
                         Uri uri = Uri.parse("content://call_log/calls");
                         context.getContentResolver().registerContentObserver(uri,true,new CallLogObserver(new Handler(),mIncomingNumber,context));

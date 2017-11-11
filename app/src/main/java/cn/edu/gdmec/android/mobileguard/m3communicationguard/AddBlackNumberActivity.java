@@ -21,6 +21,8 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
     private CheckBox mTelCB;
     private EditText mNumET;
     private EditText mNameET;
+    private EditText mStateEt;
+
     private BlackNumberDao dao;
     //et_balcknumber  et_blackname  add_fromcontact_btn
     private void initView(){
@@ -32,8 +34,9 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
 
         mSmsCB = (CheckBox) findViewById(R.id.cb_blacknumber_sms);
         mTelCB = (CheckBox) findViewById(R.id.cb_blacknumber_tel);
-        mNumET = (EditText) findViewById(R.id.et_balcknumber);
-        mNameET = (EditText) findViewById(R.id.et_blackname);
+        mNumET = (EditText) findViewById(R.id.et_balcknumber);//////////////////////////////
+        mNameET = (EditText) findViewById(R.id.et_blackname);///////////////////////////////
+        mStateEt=(EditText)findViewById(R.id.et_blackstate);
         findViewById(R.id.add_blacknum_btn).setOnClickListener(this);
         findViewById(R.id.add_fromcontact_btn).setOnClickListener(this);
     }
@@ -44,14 +47,20 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
         if(data != null){
             String phone = data.getStringExtra("phone");
             String name = data.getStringExtra("name");
+           // String saorao = data.getStringExtra("saorao");//等下注释
+            String state=data.getStringExtra("state");
             mNameET.setText(name);
             mNumET.setText(phone);
+        // mSaoraoET.setText(saorao);//等下注释
+            mStateEt.setText(state);//这个重要点,容易错
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // requestWindowFeature(Window.FEATURE_NO_TITLE);
+       // getSupportActionBar().hide();//去除标题栏
         setContentView(R.layout.activity_add_black_number);
         dao = new BlackNumberDao(AddBlackNumberActivity.this);
         initView();
@@ -66,6 +75,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
             case R.id.add_blacknum_btn:
                 String number = mNumET.getText().toString().trim();
                 String name = mNameET.getText().toString().trim();
+                String state=mStateEt.getText().toString().trim();
                 if(TextUtils.isEmpty(number) || TextUtils.isEmpty(name)){
                     Toast.makeText(this,"电话号码和手机号不能为空！",Toast.LENGTH_LONG).show();
                     return;
@@ -73,6 +83,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
                     BlackContactInfo blackContactInfo = new BlackContactInfo();
                     blackContactInfo.phoneNumber = number;
                     blackContactInfo.contactName = name;
+                    blackContactInfo.state=state;
                     if(mSmsCB.isChecked() & mTelCB.isChecked()){
                         blackContactInfo.mode = 3;
                     }else if(mSmsCB.isChecked() & !mTelCB.isChecked()){
