@@ -100,9 +100,12 @@ public class AppManagerAdapter extends BaseAdapter {
             viewHolder.mAppSizeTV=(TextView)view.findViewById(R.id.tv_appsize);
             viewHolder.mAppNameTV=(TextView)view.findViewById(R.id.tv_appname);
             viewHolder.mLuanchAppTV=(TextView)view.findViewById(R.id.tv_launch_app);
+            viewHolder.mAboutAppTV=(TextView)view.findViewById(R.id.tv_about_app);
             viewHolder.mSettingAppTV=(TextView)view.findViewById(R.id.tv_setting_app);
             viewHolder.mShareAppTV=(TextView)view.findViewById(R.id.tv_share_app);
             viewHolder.mUninstallTV=(TextView)view.findViewById(R.id.tv_uninstall_app);
+            //
+
             viewHolder.mAppOptionLL=(LinearLayout) view.findViewById(R.id.ll_option_app);
             view.setTag(viewHolder);
         }
@@ -110,7 +113,7 @@ public class AppManagerAdapter extends BaseAdapter {
             viewHolder.mAppLocationTV.setText(appInfo.getAppLocation(appInfo.isInRoom));
             viewHolder.mAppIconImgv.setImageDrawable(appInfo.icon);
             viewHolder.mAppSizeTV.setText(Formatter.formatFileSize(context,appInfo.appSize));
-            viewHolder.mAppNameTV.setText(appInfo.appName);
+            viewHolder.mAppNameTV.setText(appInfo.appName);//这里不用改
             if (appInfo.isSelected){
                 viewHolder.mAppOptionLL.setVisibility(View.VISIBLE);
             }else {
@@ -123,6 +126,7 @@ public class AppManagerAdapter extends BaseAdapter {
         viewHolder.mSettingAppTV.setOnClickListener(listener);
         viewHolder.mShareAppTV.setOnClickListener(listener);
         viewHolder.mUninstallTV.setOnClickListener(listener);
+        viewHolder.mAboutAppTV.setOnClickListener(listener);
         return view;
     }
 //创建一个TextView
@@ -154,7 +158,7 @@ public class AppManagerAdapter extends BaseAdapter {
         //app名称
         TextView mAppNameTV;
         //操作App的线性布局
-
+        TextView mAboutAppTV;
         LinearLayout mAppOptionLL;
 
     }
@@ -181,6 +185,11 @@ public class AppManagerAdapter extends BaseAdapter {
                     //设置应用
                     EngineUtils.SettingAppDetail(context,appInfo);
                     break;
+              case R.id.tv_about_app:
+                    //关于应用
+                    EngineUtils.about(context,appInfo);
+                    break;
+
                 case R.id.tv_uninstall_app:
                     //卸载应用,需要注册广播接受者
                     if (appInfo.packageName.equals(context.getPackageName())){
@@ -189,6 +198,7 @@ public class AppManagerAdapter extends BaseAdapter {
                     }
                     EngineUtils.uninstallApplication(context,appInfo);
                     break;
+
             }
         }
     }

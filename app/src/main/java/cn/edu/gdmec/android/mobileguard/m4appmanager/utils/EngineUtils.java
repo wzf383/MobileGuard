@@ -1,11 +1,27 @@
 package cn.edu.gdmec.android.mobileguard.m4appmanager.utils;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PermissionInfo;
+import android.content.pm.Signature;
 import android.net.Uri;
 import android.widget.Toast;
 
+
+import java.io.ByteArrayInputStream;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
+import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
 /**
@@ -43,6 +59,9 @@ public class EngineUtils {
         intent.setData(Uri.parse("package:"+appInfo.packageName));
         context.startActivity(intent);
     }
+    //开启关于页面
+
+
   //卸载应用
 
     public static void uninstallApplication(Context context,AppInfo appInfo){
@@ -55,4 +74,54 @@ public class EngineUtils {
             Toast.makeText(context,"系统应用无法卸载",Toast.LENGTH_LONG).show();
         }
     }
+
+
+    public static void about(Context context,AppInfo appInfo){
+        try {
+            PackageManager about=context.getPackageManager();
+            PackageInfo packInfo= about.getPackageInfo(appInfo.packageName,0);
+            String version = packInfo.versionName;//版本号
+            long firstInstallTime = packInfo.firstInstallTime;//安装时间
+            PackageInfo packinfo1 = about.getPackageInfo(appInfo.packageName, PackageManager.GET_SIGNATURES);
+            String certMsg ="";
+            Signature[] sigs = packinfo1.signatures;
+            CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+            //获取apk证书签署者信息
+            X509Certificate cert = (X509Certificate) certFactory.generateCertificate(
+                    new ByteArrayInputStream(sigs[0].toByteArray()));
+            certMsg+= cert.getIssuerDN().toString();
+            certMsg+= cert.getSubjectDN().toString();
+            String date=null;
+            SimpleDateFormat dateformat = new SimpleDateFormat("yyyy年MM月dd号 ahh:mm:ss");
+            date=dateformat.format(firstInstallTime);
+            //List<PermissionInfo> permissionInfoList = new ArrayList<PermissionInfo>();
+            List<String> a=new ArrayList<String>();
+            PackageInfo packinfo2 = about.getPackageInfo(appInfo.packageName, PackageManager.GET_PERMISSIONS);
+            String[] permissions =packinfo2.requestedPermissions;
+            if(permissions != null){
+                for(String str : permissions){
+                       /* PermissionInfo permissionInfo = context.getPackageManager().getPermissionInfo(str, 0);
+                        permissionInfoList.add(permissionInfo);*/
+                    a.add(str);
+                }
+            }
+            String s = Pattern.compile("\\b([\\w\\W])\\b").matcher(a.toString().substring(1,a.toString().length()-1)).replaceAll(".");
+            AlertDialog.Builder builder =new AlertDialog.Builder(context);
+            builder.setTitle(appInfo.appName);
+            builder.setMessage("version:"+version+"\n"+
+                    "Install time:"+"\n"+date+"\n"+
+                    "Certificate issuer:"+certMsg+"\n"+
+                    "Permission:"+"\n"+s);
+            builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
