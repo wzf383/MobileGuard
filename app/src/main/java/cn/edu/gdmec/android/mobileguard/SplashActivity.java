@@ -19,12 +19,18 @@ public class SplashActivity extends AppCompatActivity {
         mVersion= MyUtils.getVersion(getApplicationContext());
         mTvVersion=(TextView)findViewById(R.id.tv_splash_version);
         mTvVersion.setText("版本号:"+mVersion);
-       /* final VersionUpdateUtils versionUpdateUtils=new VersionUpdateUtils(mVersion,SplashActivity.this);
+        /* VersionUpdateUtils.DownloadCallback downloadCallback = new VersionUpdateUtils.DownloadCallback() {
+            @Override
+            public void afterDownload(String filename) {
+                MyUtils.installApk(SplashActivity.this,"Mobileguard.apk");
+            }
+        };
+        final VersionUpdateUtils versionUpdateUtils = new VersionUpdateUtils(mVersion,SplashActivity.this,downloadCallback,HomeActivity.class);
         new Thread(){
             @Override
             public  void run(){
                 super.run();
-                versionUpdateUtils.getCloudVersion();
+                versionUpdateUtils.getCloudVersion("http://android2017.duapp.com/updateinfo.html");
             }
         }.start();
              //dsd*/
