@@ -22,6 +22,11 @@ public class AppInfo {
     //是否选中，莫仍都为false
     public boolean isSelected=false;
     //拿到app位置字符串
+    public String version;
+    public String InstallTime;
+    public String signature;
+    public String permissions;
+    public String activityName;
     public String getAppLocation(boolean isInRoom){
         if (isInRoom){
             return "手机内存";

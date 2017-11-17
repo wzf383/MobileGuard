@@ -105,7 +105,7 @@ public class AppManagerAdapter extends BaseAdapter {
             viewHolder.mShareAppTV=(TextView)view.findViewById(R.id.tv_share_app);
             viewHolder.mUninstallTV=(TextView)view.findViewById(R.id.tv_uninstall_app);
             //
-
+            viewHolder.mActivityTV = (TextView) view.findViewById(R.id.tv_activityapp);
             viewHolder.mAppOptionLL=(LinearLayout) view.findViewById(R.id.ll_option_app);
             view.setTag(viewHolder);
         }
@@ -127,6 +127,7 @@ public class AppManagerAdapter extends BaseAdapter {
         viewHolder.mShareAppTV.setOnClickListener(listener);
         viewHolder.mUninstallTV.setOnClickListener(listener);
         viewHolder.mAboutAppTV.setOnClickListener(listener);
+        viewHolder.mActivityTV.setOnClickListener(listener);
         return view;
     }
 //创建一个TextView
@@ -160,7 +161,7 @@ public class AppManagerAdapter extends BaseAdapter {
         //操作App的线性布局
         TextView mAboutAppTV;
         LinearLayout mAppOptionLL;
-
+        TextView mActivityTV;
     }
 
     class   MyClickListener implements View.OnClickListener{////////////////
@@ -189,7 +190,9 @@ public class AppManagerAdapter extends BaseAdapter {
                     //关于应用
                     EngineUtils.about(context,appInfo);
                     break;
-
+                case R.id.tv_activityapp:
+                    EngineUtils.getActivity(context,appInfo);
+                    break;
                 case R.id.tv_uninstall_app:
                     //卸载应用,需要注册广播接受者
                     if (appInfo.packageName.equals(context.getPackageName())){

@@ -123,5 +123,17 @@ public class EngineUtils {
             e.printStackTrace();
         }
     }
+    public static void getActivity(Context context,AppInfo appInfo) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(appInfo.appName);
+        builder.setMessage("Activity："+appInfo.activityName);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
+    }
 
 }
