@@ -57,8 +57,12 @@ public class HomeActivity extends AppCompatActivity {
                             showSetUpPswdDialog();
                         }
                         break;
-                    case 1:
+                   /* case 1:
                         startActivity(SecurityPhoneActivity.class);
+                        break;*/
+                    case 1:
+                        Intent intent = new Intent(HomeActivity.this, SecurityPhoneActivity.class);
+                        startActivity(intent);
                         break;
                     case 2:
                         startActivity(AppManagerActivity.class);
