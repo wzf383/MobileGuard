@@ -151,7 +151,7 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
                 cacheInfo.appName=info.applicationInfo.loadLabel(pm).toString();
                 cacheInfo.appIcon=info.applicationInfo.loadIcon(pm);
                 cacheInfos.add(cacheInfo);
-                cacheMemory +=cachesize;
+                cacheMemory+=cachesize;
 
             }
         }

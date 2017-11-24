@@ -143,8 +143,7 @@ public class CleanCacheActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-    class  ClearCacheObserver extends
-            android.content.pm.IPackageDataObserver.Stub{
+    class  ClearCacheObserver extends android.content.pm.IPackageDataObserver.Stub{
         public void onRemoveCompleted(final String packageName,final boolean succeeded){
 
         }
