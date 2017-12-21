@@ -1,3 +1,5 @@
+
+
 package cn.edu.gdmec.android.mobileguard.m8trafficmonitor;
 
 import android.content.BroadcastReceiver;
@@ -216,3 +218,4 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
         super.onDestroy();
     }
 }
+

@@ -27,6 +27,7 @@ public class AppInfo {
     public String signature;
     public String permissions;
     public String activityName;
+    public  boolean isLock;
     public String getAppLocation(boolean isInRoom){
         if (isInRoom){
             return "手机内存";
@@ -36,5 +37,5 @@ public class AppInfo {
 
     }
     /** 应用程序是否加锁 */
-    public  boolean isLock;
+
 }

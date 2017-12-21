@@ -66,8 +66,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //新加
-        /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+     /*   if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
         }*/
