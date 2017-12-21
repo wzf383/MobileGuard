@@ -35,5 +35,6 @@ public class AppInfo {
         }
 
     }
-
+    /** 应用程序是否加锁 */
+    public  boolean isLock;
 }
